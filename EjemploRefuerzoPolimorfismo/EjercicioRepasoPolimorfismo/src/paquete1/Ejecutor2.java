@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquete1;
 
 import java.util.ArrayList;
@@ -17,7 +12,7 @@ public class Ejecutor2 {
         String[] apellidos = {"Martinez", "Lyons", "Kim", "Tate", "Lee"};
         int[] edad = {9, 70, 35, 23, 10};
         double pasajeFijo = 0.4;
-        
+
         /*
         Generar un proceso que permita iterar los arreglos; el objetivo es 
         crear objetos de tipo Pasaje Menor de edad, Pasaje Normal, Pasaje 
@@ -35,17 +30,43 @@ public class Ejecutor2 {
         normal: mayor a 25 y menor 65
         tercera edad: mayor o igual a 65
         
-        */
+         */
         // inicio de solución
-        
-        
+        for (int i = 0; i < nombres.length; i++) {
+            if (edad[i] >= 0 && edad[i] <= 18) {
+                Persona persona = new Persona(nombres[i], apellidos[i], edad[i]);
+                PasajeMenorEdad pm = new PasajeMenorEdad(pasajeFijo);
+                pm.establecerPersona(persona);
+                pasajes.add(pm);
+
+            } else if (edad[i] > 18 && edad[i] <= 25) {
+                Persona persona = new Persona(nombres[i], apellidos[i], edad[i]);
+                PasajeUniversitario pu = 
+                        new PasajeUniversitario(pasajeFijo);
+                pu.establecerPersona(persona);
+                pasajes.add(pu);
+
+            } else if (edad[i] > 25 && edad[i] <= 65) {
+                Persona persona = new Persona(nombres[i], apellidos[i], edad[i]);
+                PasajeNormal pnorm = new PasajeNormal(pasajeFijo);
+                pnorm.establecerPersona(persona);
+                pasajes.add(pnorm);
+
+            } else if (edad[i] >= 65) {
+                Persona persona = new Persona(nombres[i], apellidos[i], edad[i]);
+                PasajeTerceraEdad pt = new PasajeTerceraEdad(pasajeFijo);
+                pt.establecerPersona(persona);
+                pasajes.add(pt);
+
+            }
+        }
+
         // fin  de solución
-        
         // no incrementar líneas de código desde aquí
         for (int i = 0; i < pasajes.size(); i++) {
             pasajes.get(i).establecerValorPasaje();
         }
-        
+
         for (int i = 0; i < pasajes.size(); i++) {
             System.out.printf("%s\n",
                     pasajes.get(i));
